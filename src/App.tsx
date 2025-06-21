@@ -7,7 +7,6 @@ import TypingIndicator from './components/TypingIndicator';
 import SuggestedPropmtList from './components/SuggestedPropmtList';
 import ChatInput from './components/ChatInput';
 import { SendMessageGemini } from './service/connector';
-import { Helmet } from 'react-helmet-async';
 
 const suggestedPrompts = ['Buatkan saya artikel tentang AI', 'Jelaskan cara kerja machine learning', 'Buat kode React component'];
 
@@ -106,25 +105,6 @@ const App = () => {
 
   return (
     <div className="flex flex-col h-screen bg-background">
-      <Helmet>
-        <title>BootGan – AI Assistant</title>
-        <meta name="description" content="BootGan adalah AI Assistant bertenaga Gemini API yang dikembangkan oleh Alif Dwi Rahman. Tanyakan apapun dan dapatkan jawaban cepat dan pintar!" />
-        <meta property="og:title" content="BootGan – AI Assistant by Alif Dwi Rahman" />
-        <meta property="og:description" content="BootGan, chatbot AI dengan Gemini API, siap bantu kebutuhan Anda" />
-        <meta property="og:url" content="https://botgan-nu.vercel.app/" />
-        <meta property="og:image" content="/preview.png" />
-        <meta property="og:type" content="website" />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:creator" content="@saburlimbur" />
-        <meta name="twitter:title" content="BootGan – AI Assistant by Alif Dwi Rahman" />
-        <meta name="twitter:description" content="Chatbot AI canggih buatan Alif Dwi Rahman, powered by Gemini." />
-        <meta name="twitter:image" content="/preview.png" />
-
-        <link rel="icon" href="/botgan-icon.png" />
-        <link rel="canonical" href="https://botgan-nu.vercel.app/" />
-      </Helmet>
-
       <ChatHeader onClear={clearChat} />
 
       <ScrollArea 
