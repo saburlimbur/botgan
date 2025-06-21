@@ -7,12 +7,9 @@ import TypingIndicator from './components/TypingIndicator';
 import SuggestedPropmtList from './components/SuggestedPropmtList';
 import ChatInput from './components/ChatInput';
 import { SendMessageGemini } from './service/connector';
+import { Helmet } from 'react-helmet-async';
 
-const suggestedPrompts = [
-  'Buatkan saya artikel tentang AI',
-  'Jelaskan cara kerja machine learning',
-  'Buat kode React component',
-];
+const suggestedPrompts = ['Buatkan saya artikel tentang AI', 'Jelaskan cara kerja machine learning', 'Buat kode React component'];
 
 const App = () => {
   const [messages, setMessages] = React.useState<MessageProps[]>([
@@ -109,34 +106,53 @@ const App = () => {
 
   return (
     <div className="flex flex-col h-screen bg-background">
+      <Helmet>
+        <title>BootGan – AI Assistant</title>
+        <meta name="description" content="BootGan adalah AI Assistant bertenaga Gemini API yang dikembangkan oleh Alif Dwi Rahman. Tanyakan apapun dan dapatkan jawaban cepat dan pintar!" />
+        <meta property="og:title" content="BootGan – AI Assistant by Alif Dwi Rahman" />
+        <meta property="og:description" content="BootGan, chatbot AI dengan Gemini API, siap bantu kebutuhan Anda" />
+        <meta property="og:url" content="https://botgan-nu.vercel.app/" />
+        <meta property="og:image" content="/preview.png" />
+        <meta property="og:type" content="website" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:creator" content="@saburlimbur" />
+        <meta name="twitter:title" content="BootGan – AI Assistant by Alif Dwi Rahman" />
+        <meta name="twitter:description" content="Chatbot AI canggih buatan Alif Dwi Rahman, powered by Gemini." />
+        <meta name="twitter:image" content="/preview.png" />
+
+        <link rel="icon" href="/botgan-icon.png" />
+        <link rel="canonical" href="https://botgan-nu.vercel.app/" />
+      </Helmet>
+
       <ChatHeader onClear={clearChat} />
 
-      <ScrollArea ref={scrollAreaRef} className="flex-1 p-4">
+      <ScrollArea 
+        ref={scrollAreaRef} 
+        className="flex-1 p-4">
         <div className="max-w-4xl mx-auto space-y-6">
           {messages.map((msg) => (
-            <ChatMessage
-              key={msg.id}
-              content={msg.content}
-              sender={msg.sender}
-              timestamp={msg.timestamp}
-              onCopy={() => copyToClipboard(msg.content)}
-            />
+            <ChatMessage 
+              key={msg.id} 
+              content={msg.content} 
+              sender={msg.sender} 
+              timestamp={msg.timestamp} 
+              onCopy={() => copyToClipboard(msg.content)} 
+              />
           ))}
           {isLoading && <TypingIndicator />}
         </div>
       </ScrollArea>
 
-      {messages.length === 1 && (
-        <SuggestedPropmtList prompts={suggestedPrompts} onSelect={handleSuggestedPrompt} />
-      )}
+      {messages.length === 1 && <SuggestedPropmtList prompts={suggestedPrompts} onSelect={handleSuggestedPrompt} />}
 
-      <ChatInput
-        input={input}
-        onChange={setInput}
-        onSubmit={handleSendMessage}
-        onKeyPress={handleKeyPress}
-        disabled={isLoading}
-      />
+      <ChatInput 
+        input={input} 
+        onChange={setInput} 
+        onSubmit={handleSendMessage} 
+        onKeyPress={handleKeyPress} 
+        disabled={isLoading} 
+        />
 
       <footer className="text-center text-xs text-muted-foreground py-4 bg-background border-t">
         &copy; {new Date().getFullYear()} <a href="https://alifdwirahman-db9c9.firebaseapp.com">Alif Dwi Rahman</a>. All rights reserved.
